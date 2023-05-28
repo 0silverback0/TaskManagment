@@ -1,0 +1,43 @@
+GET http://127.0.0.1:5000
+
+###
+
+POST http://127.0.0.1:5000/tasks
+Content-Type: application/x-www-form-urlencoded
+Content-Length: <length of body>
+
+title=My Task Title&description=My Task Description&status=In Progress&priority=High&created_by=John Doe&created_at=2020-01-01
+
+###
+
+GET http://127.0.0.1:5000/tasks/1
+
+###
+
+GET  http://127.0.0.1:5000/tasks/100
+
+###
+
+PATCH http://127.0.0.1:5000/tasks/1
+Content-Type: application/json
+
+{
+  "title": "New Task Title",
+  "description": "Updated task description"
+}
+
+###
+
+PATCH http://127.0.0.1:5000/tasks/100
+Content-Type: application/json
+
+{
+  "title": "New Task Title",
+  "description": "Updated task description"
+}
+
+###
+DELETE http://127.0.0.1:5000/tasks/6
+
+###
+DELETE http://127.0.0.1:5000/tasks/100
