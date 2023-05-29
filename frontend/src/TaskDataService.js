@@ -2,9 +2,21 @@ import axios from 'axios';
 
 const TaskDataService = {
   getAllTasks: () => {
-    return axios.get('http://127.0.0.1:5000/tasks'); // Adjust the API endpoint as per your setup
+    return axios.get('http://127.0.0.1:5000/tasks');
   },
-  // Add more methods for specific data operations, such as creating, updating, or deleting tasks
-};
+  
+  addNewTask: (task) => {
+    return axios.post('http://127.0.0.1:5000/tasks', task);
+  },
 
+  deleteTask: (task) => {
+    return axios.delete(`http://127.0.0.1:5000/task/${task.id}`)
+  },
+
+  editTask: (task_id, task) => {
+    return axios.patch(`http://127.0.0.1:5000/task/${task_id}`, task)
+  }
+};
+ 
 export default TaskDataService;
+

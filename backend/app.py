@@ -53,12 +53,14 @@ def get_all_tasks():
 def create_task():
     """Create a new task and add it to the database"""
 
-    title = request.form.get('title')
-    description = request.form.get('description')
-    status = request.form.get('status')
-    priority = request.form.get('priority')
-    created_by = request.form.get('created_by')
-    created_at = request.form.get('created_at')
+    data = request.get_json()
+
+    title = data.get('title')
+    description = data.get('description')
+    status = data.get('status')
+    priority = data.get('priority')
+    created_by = data.get('created_by')
+    created_at = data.get('created_at')
 
     try:
         task = Task(title=title, description=description, status=status, priority=priority,
@@ -85,7 +87,7 @@ def get_task(id):
         return jsonify({'error': str(e)})
     
 # UPDATE TASK
-@app.route('/tasks/<task_id>', methods=['PATCH'])
+@app.route('/task/<task_id>', methods=['PATCH'])
 def update_task(task_id):
     """Updates a task with the given task ID.
 
@@ -99,12 +101,14 @@ def update_task(task_id):
     if task is None:
         return jsonify({'error': 'Task not found'}), 404
 
-    title = request.json.get('title')
-    description = request.json.get('description')
-    status = request.json.get('status')
-    priority = request.json.get('priority')
-    created_by = request.json.get('created_by')
-    created_at = request.json.get('created_at')
+    data = request.get_json()
+
+    title = data.get('title')
+    description = data.get('description')
+    status = data.get('status')
+    priority = data.get('priority')
+    created_by = data.get('created_by')
+    created_at = data.get('created_at')
 
     if title:
         task.title = title
@@ -127,7 +131,7 @@ def update_task(task_id):
     return jsonify({'message': 'Task updated successfully'})
 
 # DELETE TASK
-@app.route('/tasks/<task_id>', methods=['DELETE'])
+@app.route('/task/<task_id>', methods=['DELETE'])
 def delete_task(task_id):
     """
     Deletes a task by task_id

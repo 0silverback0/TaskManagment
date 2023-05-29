@@ -12,6 +12,6 @@ class Task(db.Model):
     title = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=False)
     status = db.Column(db.String, nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False)
+    created_at = db.Column(db.String, nullable=False)
     created_by = db.Column(db.String, nullable=False)
     priority = db.Column(db.String, nullable=False)
